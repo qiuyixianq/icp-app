@@ -4,6 +4,78 @@
 //date docs: //MONTH START from 0 
 export const cashInData = [
     {
+        category: 'Comission',
+        reference: 'from David',
+        detail: 'Ads running on our facebook',
+        amount: 500,
+        date: new Date(2021, 6, 1, 14, 10, 0, 0)
+    },
+    {
+        category: 'Sales',
+        reference: 'from CJ',
+        detail: 'Promotion package',
+        amount: 259,
+        date: new Date(2021, 6, 3, 9, 59, 0, 0)
+    },
+    {
+        category: 'Sales',
+        reference: 'from Lin',
+        detail: 'Two Number nine large',
+        amount: 499,
+        date: new Date(2021, 6, 6, 10, 29, 0, 0)
+    },
+    {
+        category: 'Bonus',
+        reference: 'from company',
+        detail: '',
+        amount: 500,
+        date: new Date(2021, 6, 9, 15, 12, 0, 0)
+    },
+    {
+        category: 'Sales',
+        reference: 'from Jamie Oliver',
+        detail: 'Promotion pack',
+        amount: 790,
+        date: new Date(2021, 6, 13, 12, 10, 0, 0)
+    },
+    {
+        category: 'Sales',
+        reference: 'from Jenny',
+        detail: '',
+        amount: 238,
+        date: new Date(2021, 6, 13, 14, 10, 0, 0)
+    },
+    {
+        category: 'Sales',
+        reference: 'from Jinie',
+        detail: 'Package CA',
+        amount: 920,
+        date: new Date(2021, 6, 17, 19, 38, 0, 0)
+    },
+    {
+        category: 'Investment',
+        reference: 'from CIMB',
+        detail: 'Investment return from Plantation Project',
+        amount: 200,
+        date: new Date(2021, 6, 20, 14, 10, 0, 0)
+    },
+    {
+        category: 'Sales',
+        reference: 'from Jayden',
+        detail: '',
+        amount: 578,
+        date: new Date(2021, 6, 23, 18, 20, 0, 0)
+    },
+    {
+        category: 'Sales',
+        reference: 'from Kate',
+        detail: 'Package BA',
+        amount: 670,
+        date: new Date(2021, 6, 27, 9, 38, 0, 0)
+    },
+
+
+    {
         category: 'Sales',
         reference: 'from Joe',
         detail: '',
@@ -87,6 +159,8 @@ export const cashInData = [
         amount: 299,
         date: new Date(2021, 7, 28, 10, 10, 0, 0)
     },
+
+
     {
         category: 'Comission',
         reference: 'from Tim',

@@ -36,7 +36,7 @@ export const NavBar = () => {
                                         <div className="ml-10 flex items-baseline space-x-4">
                                             {navigation.map((item, itemIdx) =>
                                                 currentNav === item ? (
-                                                    <Fragment key={item}>
+                                                    <Fragment key={itemIdx}>
                                                         {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
 
                                                         <Link to={`/${item.toLowerCase().replace(/ /g, '')}`}>
@@ -50,9 +50,8 @@ export const NavBar = () => {
                                                     </Fragment>
                                                 ) : (
 
-                                                    <Link to={`/${item.toLowerCase().replace(/ /g, '')}`}>
+                                                    <Link to={`/${item.toLowerCase().replace(/ /g, '')}`} key={itemIdx}>
                                                         <span
-                                                            key={item}
                                                             className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                                                             onClick={() => dispatch(setCurrentNav(item))}
                                                         >
@@ -135,7 +134,7 @@ export const NavBar = () => {
                             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                                 {navigation.map((item, itemIdx) =>
                                     currentNav === item ? (
-                                        <Fragment key={item}>
+                                        <Fragment key={itemIdx}>
                                             {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                                             <Link to={`/${item.toLowerCase().replace(/ /g, '')}`}>
                                                 <span
@@ -147,9 +146,8 @@ export const NavBar = () => {
                                             </Link>
                                         </Fragment>
                                     ) : (
-                                        <Link to={`/${item.toLowerCase().replace(/ /g, '')}`} >
+                                        <Link to={`/${item.toLowerCase().replace(/ /g, '')}`} key={itemIdx}>
                                             <span
-                                                key={item}
                                                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                                                 onClick={() => dispatch(setCurrentNav(item))}
                                             >
