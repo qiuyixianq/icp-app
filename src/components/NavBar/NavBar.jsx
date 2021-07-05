@@ -16,7 +16,6 @@ function classNames(...classes) {
 export const NavBar = () => {
     const dispatch = useDispatch();
     const { currentNav } = useSelector(state => state.navBar);
-    console.log(currentNav);
 
     return (
         <div>

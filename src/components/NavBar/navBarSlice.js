@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    currentNav: 'Dashboard'
+    currentNav: ''
 }
 
 const navBarSlice = createSlice({
