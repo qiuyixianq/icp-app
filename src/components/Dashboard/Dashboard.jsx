@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Range } from './Range';
-import { PieChart } from './PieChart';
+import { PieChartOut } from './PieChartOut';
+import { PieChartIn } from './PieChartIn';
 import { LineChart } from './LineChart';
 
 const rangeList = ['This Month', 'Last Month', 'Last Three Month'];
@@ -26,7 +27,8 @@ export const Dashboard = () => {
 
 
                             <div className="flex mt-10 items-center">
-                                <PieChart rangeList={rangeList} currentRange={range} />
+                                <PieChartOut rangeList={rangeList} currentRange={range} />
+                                <PieChartIn rangeList={rangeList} currentRange={range} />
 
                                 <LineChart />
                             </div>
