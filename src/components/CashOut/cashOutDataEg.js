@@ -35,7 +35,7 @@ export const cashOutData = [
         category: 'Transportation',
         reference: 'grab fee for work',
         detail: '',
-        amount: 50,
+        amount: 150,
         date: new Date(2021, 7, 21, 14, 0, 0, 0)
     },
     {

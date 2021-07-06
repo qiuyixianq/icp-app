@@ -1,52 +1,14 @@
 import React, { useState } from 'react';
-import { Line, Doughnut } from 'react-chartjs-2';
 import { Range } from './Range';
-
+import { PieChart } from './PieChart';
+import { LineChart } from './LineChart';
 
 const rangeList = ['This Month', 'Last Month', 'Last Three Month'];
 
-const pieState = {
-    labels: ['January', 'February', 'March','April', 'May'],
-    datasets: [
-        {
-            label: 'Rainfall',
-            backgroundColor: [
-                '#B21F00',
-                '#C9DE00',
-                '#2FDE00',
-                '#00A6B4',
-                '#6800B4'
-            ],
-            hoverBackgroundColor: [
-                '#501800',
-                '#4B5000',
-                '#175000',
-                '#003350',
-                '#35014F'
-            ],
-            data: [1, 2, 3, 4, 5]
-        }
-    ]
-}
-
-const lineState = {
-    labels: ['January', 'February', 'March','April', 'May'],
-    datasets: [
-        {
-            label: 'Rainfall',
-            fill: true,
-            lineTension: 0.5,
-            backgroundColor: 'rgba(75,192,192,1)',
-            borderColor: 'rgba(0,0,0,1)',
-            borderWidth: 2,
-            data: [65, 59, 80, 81, 56]
-        }
-    ]
-}
-
 
 export const Dashboard = () => {
-    const [selected, setSelected] = useState(rangeList[0]);
+    const [range, setRange] = useState(rangeList[0]);
+    console.log('range is ', range);
 
     return (
         <div>
@@ -61,45 +23,13 @@ export const Dashboard = () => {
                     {/* Replace with your content */}
                     <div className="px-4 py-6 sm:px-0">
                         <div className="border-2 border-gray-300 rounded-lg p-3" >
-                            <Range onRangeChange={setSelected} range={selected} />
+                            <Range onRangeChange={setRange} range={range} />
 
 
                             <div className="flex mt-10 items-center">
-                                <div className="h-72 w-72 ">
-                                    <Doughnut
-                                        data={pieState}
-                                        options={{
-                                            title: {
-                                                display: true,
-                                                text: 'Average Rainfall per month',
-                                                fontSize: 20
-                                            },
-                                            legend: {
-                                                display: true,
-                                                position: 'right'
-                                            },
+                                <PieChart />
 
-                                        }}
-                                    />
-                                </div>
-
-
-                                <div>
-                                    <Line
-                                        data={lineState}
-                                        options={{
-                                            title: {
-                                                display: true,
-                                                text: 'Average Rainfall per month',
-                                                fontSize: 20
-                                            },
-                                            legend: {
-                                                display: true,
-                                                position: 'right'
-                                            }
-                                        }}
-                                    />
-                                </div>
+                                <LineChart />
                             </div>
                         </div>
                     </div>

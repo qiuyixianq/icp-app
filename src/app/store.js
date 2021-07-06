@@ -9,10 +9,8 @@ export const store = configureStore({
   reducer: {
     navBar: navBarReducer,
     balance: balanceReducer,
-    cashFlow: {
-      category: categoryReducer,
-      cashIn: cashInReducer,
-      cashOut: cashOutReducer,
-    },
+    category: categoryReducer,
+    cashIn: cashInReducer,
+    cashOut: cashOutReducer,
   },
 });
