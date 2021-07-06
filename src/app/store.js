@@ -10,7 +10,7 @@ export const store = configureStore({
     navBar: navBarReducer,
     balance: balanceReducer,
     category: categoryReducer,
-    cashIn: cashInReducer,
-    cashOut: cashOutReducer,
+    cashInData: cashInReducer,
+    cashOutData: cashOutReducer,
   },
 });

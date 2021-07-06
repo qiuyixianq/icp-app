@@ -1,14 +1,13 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { cashOutData } from '../CashOut/cashOutDataEg';
-
 
 const backgroundColor = ['#8464a0', '#0a407a', '#C9DE00', '#2086ec', '#00A6B4', '#6800B4', '#cea9bc'];
 const hoverBackgroundColor = ['#532d75', '#082a4f', '#4B5000', '#145391', '#003350', '#35014F', '#99607e'];
 
 export const PieChartOut = props => {
     const { cashOutCategory } = useSelector(state => state.category);
+    const { cashOutData } = useSelector(state => state);
     const { rangeList, currentRange } = props;
 
     //filter data

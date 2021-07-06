@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { InCategory } from './InCategory';
+import { addCashIn } from './cashInSlice';
+
 
 export const CashIn = () => {
+    const { cashInCategory } = useSelector(state => state.category);
+    const [selectedCategory, setSelectedCategory] = useState(cashInCategory[0]);
+    const dispatch = useDispatch();
+    const referenceRef = useRef(null);
+    const detailRef = useRef(null);
+    const amountRef = useRef(null);
+
+    //handle submit
+    const saveRecord = () => {
+        const newRecord = {
+            category: selectedCategory,
+            reference: referenceRef.current.value,
+            detail: detailRef.current.value,
+            amount: +amountRef.current.value,
+            date: new Date()
+        }
+        dispatch(addCashIn(newRecord));
+    }
 
     //render amountInput
     const renderCashInput = () => {
@@ -20,6 +41,7 @@ export const CashIn = () => {
                         id="price"
                         className="block w-full pl-7 pr-12 rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                         placeholder="0.00"
+                        ref={amountRef}
                     />
                     <div className="absolute inset-y-0 right-0 flex items-center">
                         <label htmlFor="currency" className="sr-only">
@@ -54,7 +76,7 @@ export const CashIn = () => {
                         <div className="border-2 border-gray-300 rounded-lg flex" >
 
 
-                            <form className="flex w-full h-full space-x-3">
+                            <div className="flex w-full h-full space-x-3">
                                 <div className="w-full px-5 py-10 mx-auto bg-white rounded-lg shadow dark:bg-gray-800">
 
 
@@ -66,19 +88,29 @@ export const CashIn = () => {
                                     <div className="grid max-w-xl grid-cols-2 gap-4 m-auto">
 
                                         <div className="col-span-2 lg:col-span-1">
-                                            {/* <input type="text" id="contact-form-name" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Category" /> */}
-                                            <InCategory />
+                                            <InCategory selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
                                         </div>
 
 
                                         <div className="col-span-2 lg:col-span-1">
                                             <div className=" relative ">
-                                                <input type="text" id="contact-form-email" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Reference" />
+                                                <input
+                                                    type="text"
+                                                    id="contact-form-email"
+                                                    className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                                                    placeholder="Reference"
+                                                    ref={referenceRef}
+                                                />
                                             </div>
                                         </div>
                                         <div className="col-span-2">
-                                            <label className="text-gray-700" for="name">
-                                                <textarea className="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" id="comment" placeholder="Detail" name="detail" rows="5" cols="40">
+                                            <label className="text-gray-700" htmlFor="name">
+                                                <textarea
+                                                    className="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                                                    id="comment"
+                                                    placeholder="Detail" name="detail" rows="5" cols="40"
+                                                    ref={detailRef}
+                                                >
                                                 </textarea>
                                             </label>
                                         </div>
@@ -88,14 +120,16 @@ export const CashIn = () => {
 
 
                                         <div className="col-span-2 text-right">
-                                            <button type="submit" className="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                                            <button
+                                                className="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                                                onClick={() => saveRecord()}>
                                                 Save
                                             </button>
                                         </div>
                                     </div>
 
                                 </div>
-                            </form>
+                            </div>
 
 
 

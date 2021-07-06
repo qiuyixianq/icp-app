@@ -1,7 +1,6 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { cashInData } from '../CashIn/cashInDataEg';
 
 
 const backgroundColor = ['#006a4e', '#797df6', '#8abaae', '#4adede', '#1aa6ec', '#1e2e97'];
@@ -9,8 +8,9 @@ const hoverBackgroundColor = ['#00523c', '#5659c7', '#699187', '#3ca3a3', '#147e
 
 export const PieChartIn = props => {
     const { cashInCategory } = useSelector(state => state.category);
+    const { cashInData } = useSelector(state => state);
     const { rangeList, currentRange } = props;
-    console.log(cashInData);
+    
     //filter data
     const filterData = () => {
         let data = [];
