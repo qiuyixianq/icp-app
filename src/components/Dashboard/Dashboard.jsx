@@ -8,7 +8,6 @@ const rangeList = ['This Month', 'Last Month', 'Last Three Month'];
 
 export const Dashboard = () => {
     const [range, setRange] = useState(rangeList[0]);
-    console.log('range is ', range);
 
     return (
         <div>
@@ -27,7 +26,7 @@ export const Dashboard = () => {
 
 
                             <div className="flex mt-10 items-center">
-                                <PieChart />
+                                <PieChart rangeList={rangeList} currentRange={range} />
 
                                 <LineChart />
                             </div>

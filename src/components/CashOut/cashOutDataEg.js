@@ -8,41 +8,55 @@ export const cashOutData = [
         reference: 'to Raymond',
         detail: 'monthly warehouse rent',
         amount: 1200,
-        date: new Date(2021, 7, 5, 9, 29, 0, 0)
+        date: new Date(2021, 4, 5, 9, 29, 0, 0)
     },
     {
         category: 'Stock',
         reference: 'to Jinny Trading',
         detail: '10 premium wireless mouse',
         amount: 1000,
-        date: new Date(2021, 7, 15, 15, 10, 0, 0)
+        date: new Date(2021, 4, 15, 15, 10, 0, 0)
     },
     {
         category: 'Stock',
         reference: 'to Quick Train Trading',
         detail: '10 wireless keyboard',
         amount: 2000,
-        date: new Date(2021, 7, 15, 10, 0, 0, 0)
+        date: new Date(2021, 4, 15, 10, 0, 0, 0)
+    },
+    {
+        category: 'Rent',
+        reference: 'to Raymond',
+        detail: 'monthly warehouse rent',
+        amount: 1200,
+        date: new Date(2021, 5, 5, 9, 11, 0, 0)
     },
     {
         category: 'Stock',
         reference: 'to Jinny Trading',
         detail: '20 deskmat',
         amount: 1000,
-        date: new Date(2021, 7, 20, 9, 29, 0, 0)
+        date: new Date(2021, 5, 15, 9, 29, 0, 0)
     },
     {
         category: 'Transportation',
         reference: 'grab fee for work',
         detail: '',
         amount: 150,
-        date: new Date(2021, 7, 21, 14, 0, 0, 0)
+        date: new Date(2021, 5, 21, 14, 0, 0, 0)
     },
     {
         category: 'Rent',
         reference: 'to Raymond',
         detail: 'montly warehosue rent',
         amount: 1200,
-        date: new Date(2021, 8, 1, 10, 28, 0, 0)
+        date: new Date(2021, 6, 1, 10, 28, 0, 0)
+    },
+    {
+        category: 'Stock',
+        reference: 'to Jacky',
+        detail: '10 premium mousepad',
+        amount: 500,
+        date: new Date(2021, 6, 1, 10, 28, 0, 0)
     },
 ];

@@ -7,32 +7,45 @@ import { cashOutData } from '../CashOut/cashOutDataEg';
 const backgroundColor = ['#B21F00', '#C9DE00', '#2FDE00', '#00A6B4', '#6800B4'];
 const hoverBackgroundColor = ['#501800', '#4B5000', '#175000', '#003350', '#35014F'];
 
-export const PieChart = () => {
+export const PieChart = props => {
     const { cashOutCategory } = useSelector(state => state.category);
+    const { rangeList, currentRange } = props;
 
     //filter data
     const filterData = () => {
         let data = [];
-        
-        for(let i = 0; i < cashOutCategory.length; i++ ){
-            let groupData = cashOutData.filter(el => el.category === cashOutCategory[i]);
-            let amountSum = 0;
-            for(let j = 0; j < groupData.length; j++){
-                amountSum += groupData[j].amount;
-            }
-            data.push(amountSum);
+        let rangedCategory = [];
+        let rangedCashOutData;
+        //This Month
+        if(currentRange === rangeList[0]){
+            rangedCashOutData = cashOutData.filter(el => el.date.getMonth() === new Date().getMonth());
         }
-        return data;
+
+        //summing each cashOut category's amount
+        for(let i = 0; i < rangedCashOutData.length; i++ ){
+            let groupData = rangedCashOutData.filter(el => el.category === cashOutCategory[i]);
+            rangedCategory.push(groupData[0].category);
+
+            let amountSum = 0;
+            if(groupData){
+                for(let j = 0; j < groupData.length; j++){
+                    amountSum += groupData[j].amount;
+                }
+                data.push(amountSum);
+            }
+        }
+        console.log(rangedCategory);
+        return {data, rangedCategory};
     }
 
     //pie data
     const pieState = {
-        labels: cashOutCategory,
+        labels: filterData().rangedCategory,
         datasets: [{
             label: 'Expenses',
             backgroundColor,
             hoverBackgroundColor,
-            data: filterData()
+            data: filterData().data
         }]
     }
 
