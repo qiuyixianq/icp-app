@@ -12,13 +12,13 @@ export const CashOut = () => {
 
             <main>
                 <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-                    {/* Replace with your content */}
+                    
                     <div className="px-4 py-6 sm:px-0">
-                        <div className="border-2 border-gray-300 rounded-lg h-96 p-3" >
+                        <div className="border-2 border-gray-300 rounded-lg p-3" >
                             Cash Out
                         </div>
                     </div>
-                    {/* /End replace */}
+                    
                 </div>
             </main>
         </div>
