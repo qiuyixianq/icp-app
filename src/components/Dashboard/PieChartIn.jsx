@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import { cashInData } from '../CashIn/cashInDataEg';
 
 
-const backgroundColor = ['#8464a0', '#0a407a', '#C9DE00', '#2086ec', '#00A6B4', '#6800B4', '#cea9bc'];
-const hoverBackgroundColor = ['#532d75', '#082a4f', '#4B5000', '#145391', '#003350', '#35014F', '#99607e'];
+const backgroundColor = ['#006a4e', '#797df6', '#8abaae', '#4adede', '#1aa6ec', '#1e2e97'];
+const hoverBackgroundColor = ['#00523c', '#5659c7', '#699187', '#3ca3a3', '#147eb3', '#121c5e'];
 
 export const PieChartIn = props => {
     const { cashInCategory } = useSelector(state => state.category);
@@ -73,7 +73,8 @@ export const PieChartIn = props => {
                         legend: {
                             display: true,
                             position: 'right'
-                        }
+                        },
+                        hoverOffset: 6
                     }}
                 />
             </div>

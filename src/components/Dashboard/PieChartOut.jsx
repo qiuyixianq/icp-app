@@ -73,7 +73,8 @@ export const PieChartOut = props => {
                         legend: {
                             display: true,
                             position: 'right'
-                        }
+                        },
+                        hoverOffset: 6
                     }}
                 />
             </div>
