@@ -16,36 +16,44 @@ export const PieChart = props => {
         let data = [];
         let rangedCategory = [];
         let rangedCashOutData;
-        //This Month
-        if(currentRange === rangeList[0]){
-            rangedCashOutData = cashOutData.filter(el => el.date.getMonth() === new Date().getMonth());
+        
+        const todate = new Date();
+        switch(currentRange){
+            //This Month
+            case rangeList[0]: rangedCashOutData = cashOutData.filter(el => el.date.getMonth() === todate.getMonth());break;
+            //Last Month
+            case rangeList[1]: rangedCashOutData = cashOutData.filter(el => el.date.getMonth() === todate.getMonth() - 1); break;
+            //Last Three Month
+            case rangeList[2]: rangedCashOutData = cashOutData.filter(el => el.date.getMonth() >= todate.getMonth() - 3 ); break;
+
+            default: console.log('this wont happen');
         }
 
         //summing each cashOut category's amount
         for(let i = 0; i < rangedCashOutData.length; i++ ){
             let groupData = rangedCashOutData.filter(el => el.category === cashOutCategory[i]);
-            rangedCategory.push(groupData[0].category);
 
             let amountSum = 0;
-            if(groupData){
+            if(groupData.length !== 0){
+                rangedCategory.push(groupData[0].category);
                 for(let j = 0; j < groupData.length; j++){
                     amountSum += groupData[j].amount;
                 }
                 data.push(amountSum);
             }
         }
-        console.log(rangedCategory);
         return {data, rangedCategory};
     }
 
+    const cleanData = filterData();
     //pie data
     const pieState = {
-        labels: filterData().rangedCategory,
+        labels: cleanData.rangedCategory,
         datasets: [{
             label: 'Expenses',
             backgroundColor,
             hoverBackgroundColor,
-            data: filterData().data
+            data: cleanData.data
         }]
     }
 
