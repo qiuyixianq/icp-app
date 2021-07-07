@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTotalExpense } from './dashboardSlice';
@@ -44,8 +44,8 @@ export const PieChartOut = props => {
             }
         }
         //dispatch the data to top lv
-        // const totalExpense = data.reduce((p,c) => p + c)
-        // dispatch(setTotalExpense(totalExpense));
+        const totalExpense = data.reduce((p,c) => p + c);
+        dispatch(setTotalExpense(totalExpense));
         return { data, rangedCategory };
     }
 

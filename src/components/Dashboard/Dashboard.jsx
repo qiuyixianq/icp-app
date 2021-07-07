@@ -1,18 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Range } from './Range';
 import { PieChartOut } from './PieChartOut';
 import { PieChartIn } from './PieChartIn';
 import { ProfitLoss } from './ProfitLoss';
 import { LineChart } from './LineChart';
-import { useSelector } from 'react-redux';
 
 const rangeList = ['This Month', 'Last Month', 'Last Three Month'];
 
 
 export const Dashboard = () => {
     const [range, setRange] = useState(rangeList[0]);    
-    const { totalExpense } = useSelector(state => state.profitLoss);
-
+    
     return (
         <div>
             <header className="bg-white shadow">

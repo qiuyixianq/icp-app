@@ -1,20 +1,24 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
+import { useSelector } from 'react-redux';
 
 const backgroundColor = ['#8abaae', '#FF6961'];
 const hoverBackgroundColor = ['#699187', '#bd534d'];
 
-const prolossData = {
-    labels: ['Profit', 'Loss'],
-    datasets: [{
-        label: 'Profit/Loss',
-        backgroundColor,
-        hoverBackgroundColor,
-        data: [65, 59]
-    }]
-}
+
 
 export const ProfitLoss = () => {
+    const { totalExpense, totalEarn } = useSelector(state => state.profitLoss);
+
+    const prolossData = {
+        labels: ['Profit', 'Loss'],
+        datasets: [{
+            label: 'Profit/Loss',
+            backgroundColor,
+            hoverBackgroundColor,
+            data: [totalEarn, totalExpense]
+        }]
+    }
 
     return (
         <div>
@@ -37,6 +41,8 @@ export const ProfitLoss = () => {
                     }}
                 />
             </div>
+
+            <h3 className="font-bold mt-2 text-2xl">Profit: <span>{totalEarn-totalExpense}</span> MYR</h3>
         </div>
     )
 }

@@ -8,7 +8,7 @@ export const cashInData = [
         reference: 'from David',
         detail: 'Ads running on our facebook',
         amount: 790,
-        date: new Date(2021, 4, 1, 14, 10, 0, 0)
+        date: new Date(2021, 4, 1, 13, 10, 0, 0)
     },
     {
         category: 'Sales',
