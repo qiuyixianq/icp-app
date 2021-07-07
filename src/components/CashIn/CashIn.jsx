@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { InCategory } from './InCategory';
 import { addCashIn } from './cashInSlice';
+import { updateBalance } from '../../app/balanceSlice';
 
 
 export const CashIn = () => {
@@ -67,6 +68,7 @@ export const CashIn = () => {
             referenceRef.current.value = detailRef.current.value = amountRef.current.value = '';
 
             dispatch(addCashIn(newRecord));
+            dispatch(updateBalance(+newRecord.amount));
             setShowSuccess(true);
         }
         

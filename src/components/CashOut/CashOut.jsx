@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { OutCategory } from './OutCategory';
 import { addCashOut } from './cashOutSlice';
+import { updateBalance } from '../../app/balanceSlice';
 
 
 export const CashOut = () => {
@@ -67,6 +68,7 @@ export const CashOut = () => {
             referenceRef.current.value = detailRef.current.value = amountRef.current.value = '';
 
             dispatch(addCashOut(newRecord));
+            dispatch(updateBalance(-newRecord.amount));
             setShowSuccess(true);
         }
         

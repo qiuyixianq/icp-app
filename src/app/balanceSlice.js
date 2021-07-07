@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = 0;
+const initialState = 4300;
 
 const balanceSlice = createSlice({
     name: 'balance',
     initialState,
     reducers: {
         updateBalance: (state,action) => {
-            state += action.payload;
+            return state += action.payload;
         }
     }
 });

@@ -3,7 +3,8 @@ import { Range } from './Range';
 import { PieChartOut } from './PieChartOut';
 import { PieChartIn } from './PieChartIn';
 import { ProfitLoss } from './ProfitLoss';
-import { LineChart } from './LineChart';
+import { Balance } from './Balance';
+//import { LineChart } from './LineChart';
 
 const rangeList = ['This Month', 'Last Month', 'Last Three Month'];
 
@@ -30,7 +31,7 @@ export const Dashboard = () => {
                                 <PieChartOut rangeList={rangeList} currentRange={range} />
                                 <PieChartIn rangeList={rangeList} currentRange={range} />
                                 <ProfitLoss />
-                                <LineChart />
+                                <Balance />
                             </div>
                         </div>
                     </div>
