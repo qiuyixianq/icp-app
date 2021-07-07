@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Doughnut } from 'react-chartjs-2';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTotalExpense } from './dashboardSlice';
 
 const backgroundColor = ['#8464a0', '#0a407a', '#C9DE00', '#2086ec', '#00A6B4', '#6800B4', '#cea9bc'];
 const hoverBackgroundColor = ['#532d75', '#082a4f', '#4B5000', '#145391', '#003350', '#35014F', '#99607e'];
@@ -9,6 +10,8 @@ export const PieChartOut = props => {
     const { cashOutCategory } = useSelector(state => state.category);
     const { cashOutData } = useSelector(state => state);
     const { rangeList, currentRange } = props;
+    const dispatch = useDispatch();
+    
 
     //filter data
     const filterData = () => {
@@ -40,8 +43,12 @@ export const PieChartOut = props => {
                 data.push(amountSum);
             }
         }
+        //dispatch the data to top lv
+        // const totalExpense = data.reduce((p,c) => p + c)
+        // dispatch(setTotalExpense(totalExpense));
         return { data, rangedCategory };
     }
+
 
     const cleanData = filterData();
     //pie data
@@ -78,7 +85,7 @@ export const PieChartOut = props => {
                 />
             </div>
 
-            <h3 className="font-bold mt-2 text-2xl">Total: {cleanData.data.reduce((p,c) => p + c)} MYR</h3>
+            <h3 className="font-bold mt-2 text-2xl">Total: <span>{cleanData.data.reduce((p,c) => p + c)}</span> MYR</h3>
         </div>
     );
 

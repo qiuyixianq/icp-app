@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Range } from './Range';
 import { PieChartOut } from './PieChartOut';
 import { PieChartIn } from './PieChartIn';
+import { ProfitLoss } from './ProfitLoss';
 import { LineChart } from './LineChart';
+import { useSelector } from 'react-redux';
 
 const rangeList = ['This Month', 'Last Month', 'Last Three Month'];
 
 
 export const Dashboard = () => {
-    const [range, setRange] = useState(rangeList[0]);
+    const [range, setRange] = useState(rangeList[0]);    
+    const { totalExpense } = useSelector(state => state.profitLoss);
 
     return (
         <div>
@@ -20,7 +23,6 @@ export const Dashboard = () => {
 
             <main>
                 <div className=" max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-                    {/* Replace with your content */}
                     <div className="px-4 py-6 sm:px-0">
                         <div className="border-2 border-gray-300 bg-white rounded-lg p-3" >
                             <Range onRangeChange={setRange} range={range} />
@@ -29,12 +31,11 @@ export const Dashboard = () => {
                             <div className="flex mt-10 items-center">
                                 <PieChartOut rangeList={rangeList} currentRange={range} />
                                 <PieChartIn rangeList={rangeList} currentRange={range} />
-
+                                <ProfitLoss />
                                 <LineChart />
                             </div>
                         </div>
                     </div>
-                    {/* /End replace */}
                 </div>
             </main>
         </div>

@@ -79,7 +79,7 @@ export const PieChartIn = props => {
                 />
             </div>
 
-            <h3 className="font-bold mt-2 text-2xl">Total: {cleanData.data.reduce((p,c) => p + c)} MYR</h3>
+            <h3 className="font-bold mt-2 text-2xl">Total: <span>{cleanData.data.reduce((p,c) => p + c)}</span> MYR</h3>
         </div>
     );
 

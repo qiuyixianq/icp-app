@@ -4,6 +4,7 @@ import balanceReducer from './balanceSlice';
 import cashInReducer from '../components/CashIn/cashInSlice';
 import cashOutReducer from '../components/CashOut/cashOutSlice';
 import categoryReducer from './categorySlice';
+import profitlossReducer from '../components/Dashboard/dashboardSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     category: categoryReducer,
     cashInData: cashInReducer,
     cashOutData: cashOutReducer,
+    profitLoss: profitlossReducer,
   },
 });
