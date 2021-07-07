@@ -19,7 +19,7 @@ export const CashIn = () => {
     //show alert effect
     useEffect(() => {
         let hideTimeOut;
-        const hide = () => {
+        const show = () => {
             hideTimeOut = setTimeout(() => {
                 alertRef.current.style.display = 'none';
                 setShowAlert(false);
@@ -28,7 +28,7 @@ export const CashIn = () => {
 
         if (showAlert) {
             alertRef.current.style.display = 'flex';
-            hide();
+            show();
         }
 
         return () => clearTimeout(hideTimeOut);
@@ -37,7 +37,7 @@ export const CashIn = () => {
     //show success effect
     useEffect(() => {
         let hideTimeOut;
-        const hide = () => {
+        const show = () => {
             hideTimeOut = setTimeout(() => {
                 successRef.current.style.display = 'none';
                 setShowSuccess(false);
@@ -46,7 +46,7 @@ export const CashIn = () => {
 
         if (showSuccess) {
             successRef.current.style.display = 'flex';
-            hide();
+            show();
         }
 
         return () => clearTimeout(hideTimeOut);
@@ -65,27 +65,12 @@ export const CashIn = () => {
 
             //clear input field
             referenceRef.current.value = detailRef.current.value = amountRef.current.value = '';
-            dispatch(addCashIn(newRecord));
 
-            //display success message for 3s
-            // successRef.current.style.display = 'flex';
-            // setTimeout(() => {
-            //     successRef.current.style.display = 'none';
-            // }, 3000);
+            dispatch(addCashIn(newRecord));
             setShowSuccess(true);
         }
-
-        else {
-            //display error message for 3s
-            // alertRef.current.style.display = 'flex';
-            // setTimeout(() => {
-            //     alertRef.current.style.display = 'none';
-            // }, 3000);
-            setShowAlert(true);
-        }
-
-
-
+        
+        else setShowAlert(true);
     }
 
     //render alert
