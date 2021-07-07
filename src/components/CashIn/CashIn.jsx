@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { InCategory } from './InCategory';
 import { addCashIn } from './cashInSlice';
@@ -13,6 +13,44 @@ export const CashIn = () => {
     const amountRef = useRef(null);
     const alertRef = useRef(null);
     const successRef = useRef(null);
+    const [showAlert, setShowAlert] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
+
+    //show alert effect
+    useEffect(() => {
+        let hideTimeOut;
+        const hide = () => {
+            hideTimeOut = setTimeout(() => {
+                alertRef.current.style.display = 'none';
+                setShowAlert(false);
+            }, 3000);
+        }
+
+        if (showAlert) {
+            alertRef.current.style.display = 'flex';
+            hide();
+        }
+
+        return () => clearTimeout(hideTimeOut);
+    }, [showAlert]);
+
+    //show success effect
+    useEffect(() => {
+        let hideTimeOut;
+        const hide = () => {
+            hideTimeOut = setTimeout(() => {
+                successRef.current.style.display = 'none';
+                setShowSuccess(false);
+            }, 3000);
+        }
+
+        if (showSuccess) {
+            successRef.current.style.display = 'flex';
+            hide();
+        }
+
+        return () => clearTimeout(hideTimeOut);
+    }, [showSuccess]);
 
     //handle submit
     const saveRecord = () => {
@@ -30,18 +68,20 @@ export const CashIn = () => {
             dispatch(addCashIn(newRecord));
 
             //display success message for 3s
-            successRef.current.style.display = 'flex';
-            setTimeout(() => {
-                successRef.current.style.display = 'none';
-            }, 3000);
-        } 
-        
+            // successRef.current.style.display = 'flex';
+            // setTimeout(() => {
+            //     successRef.current.style.display = 'none';
+            // }, 3000);
+            setShowSuccess(true);
+        }
+
         else {
             //display error message for 3s
-            alertRef.current.style.display = 'flex';
-            setTimeout(() => {
-                alertRef.current.style.display = 'none';
-            }, 3000);
+            // alertRef.current.style.display = 'flex';
+            // setTimeout(() => {
+            //     alertRef.current.style.display = 'none';
+            // }, 3000);
+            setShowAlert(true);
         }
 
 
