@@ -12,7 +12,7 @@ export const PieChartIn = props => {
     const { cashInData } = useSelector(state => state);
     const { rangeList, currentRange } = props;
     const dispatch = useDispatch();
-    
+
     //filter data
     const filterData = () => {
         let data = [];
@@ -27,7 +27,7 @@ export const PieChartIn = props => {
             //Last Three Month
             case rangeList[2]: rangedCashInData = cashInData.filter(el => el.date.getMonth() >= new Date().getMonth() - 3); break;
 
-            default: console.log('this wont happen');
+            default: ;
         }
 
         //summing each cashOut category's amount
@@ -44,7 +44,7 @@ export const PieChartIn = props => {
             }
         }
         //dispatch the data to top lv
-        const totalEarn = data.reduce((p,c) => p + c);
+        const totalEarn = data.reduce((p, c) => p + c);
         dispatch(setTotalEarn(totalEarn));
         return { data, rangedCategory };
     }
@@ -84,7 +84,7 @@ export const PieChartIn = props => {
                 />
             </div>
 
-            <h3 className="font-bold mt-2 text-2xl">Total: <span>{cleanData.data.reduce((p,c) => p + c)}</span> MYR</h3>
+            <h3 className="font-bold mt-2 text-2xl">Total: <span>{cleanData.data.reduce((p, c) => p + c)}</span> MYR</h3>
         </div>
     );
 
