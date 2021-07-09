@@ -21,11 +21,11 @@ export const PieChartOut = props => {
 
         switch (currentRange) {
             //This Month
-            case rangeList[0]: rangedCashOutData = cashOutData.filter(el => el.date.getMonth() === new Date().getMonth()); break;
+            case rangeList[0]: rangedCashOutData = cashOutData.filter(el => new Date(el.date).getMonth() === new Date().getMonth()); break;
             //Last Month
-            case rangeList[1]: rangedCashOutData = cashOutData.filter(el => el.date.getMonth() === new Date().getMonth() - 1); break;
+            case rangeList[1]: rangedCashOutData = cashOutData.filter(el => new Date(el.date).getMonth() === new Date().getMonth() - 1); break;
             //Last Three Month
-            case rangeList[2]: rangedCashOutData = cashOutData.filter(el => el.date.getMonth() >= new Date().getMonth() - 3); break;
+            case rangeList[2]: rangedCashOutData = cashOutData.filter(el => new Date(el.date).getMonth() >= new Date().getMonth() - 3); break;
 
             default: console.log('this wont happen');
         }
