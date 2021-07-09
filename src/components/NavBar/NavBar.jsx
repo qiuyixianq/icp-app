@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentNav } from './navBarSlice';
 
 
-const navigation = ['Dashboard', 'Cash In', 'Cash Out', 'Reports']
+const navigation = ['Dashboard', 'Cash In', 'Cash Out', 'Report']
 const profile = ['Your Profile', 'Settings', 'Sign out']
 
 function classNames(...classes) {

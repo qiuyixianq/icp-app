@@ -5,6 +5,7 @@ import { Dashboard } from './components/Dashboard/Dashboard';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { CashIn } from './components/CashIn/CashIn';
 import { CashOut } from './components/CashOut/CashOut';
+import { Report } from './components/Report/Report';
 
 function App() {
   return (
@@ -30,6 +31,10 @@ function App() {
 
         <Route path='/cashout' exact>
           <CashOut />
+        </Route>
+
+        <Route path='/report' exact>
+          <Report />
         </Route>
 
       </Switch>
