@@ -1,24 +1,75 @@
-import React, { useState } from 'react';
-import { cashInData } from '../CashIn/cashInDataEg';
-import { cashOutData } from '../CashOut/cashOutDataEg';
+import React, { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export const Report = () => {
     const [reportType, setReportType] = useState('cashin');
+    const { cashInData, cashOutData } = useSelector(state => state);
+    const fromDateRef = useRef(null);
+    const toDateRef = useRef(null);
+
+
+    //click event
+    const filterData = () => {
+        const fromValueString = fromDateRef.current.value;
+        const toValueString = toDateRef.current.value;
+
+        if(!fromValueString || !toValueString) alert('Empty Date Input');
+        else {
+            const fromValue = new Date(fromValueString);
+            const toValue = new Date(toValueString);
+
+            if(fromValue > toValue) alert('Invalid Date');
+            else {
+                
+            }
+        }
+    }
 
     //render reportType radio button
     const renderTypeButton = () => {
         return (
-            <div className="inline-flex justify-left ml-5 mt-5 items-center">
+            <div className="p-2 bg-gray-200 rounded-md">
                 <div className="bg-gray-200 rounded-lg">
                     <div className="inline-flex rounded-lg">
-                        <input onClick={() => setReportType('cashin')} type="radio" name="room_type" id="roomPrivate" checked hidden />
-                        <label for="roomPrivate" className={`${reportType === 'cashin' ? 'bg-green-500' : 'hover:bg-gray-300'} text-center self-center py-2 px-4 rounded-lg cursor-pointer `}>Cash In</label>
+                        <input onClick={() => setReportType('cashin')} type="radio" name="transaction_type" id="cashin" hidden />
+                        <label
+                            htmlFor="cashin"
+                            className={`${reportType === 'cashin' ? 'bg-indigo-600 text-white' : 'hover:bg-gray-300'} text-center self-center py-2 px-4 rounded-lg cursor-pointer `}
+                        >
+                            Cash In
+                        </label>
                     </div>
                     <div className="inline-flex rounded-lg">
-                        <input onClick={() => setReportType('cashout')} type="radio" name="room_type" id="roomPublic" hidden />
-                        <label for="roomPublic" className={`${reportType === 'cashout' ? 'bg-green-500' : 'hover:bg-gray-300'} text-center self-center py-2 px-4 rounded-lg cursor-pointer `}>Cash Out</label>
+                        <input onClick={() => setReportType('cashout')} type="radio" name="transaction_type" id="cashout" hidden />
+                        <label
+                            htmlFor="cashout"
+                            className={`${reportType === 'cashout' ? 'bg-indigo-600 text-white' : 'hover:bg-gray-300'} text-center self-center py-2 px-4 rounded-lg cursor-pointer `}
+                        >
+                            Cash Out
+                        </label>
                     </div>
                 </div>
+            </div>
+
+        )
+    }
+
+    //render from-to range input
+    const renderRangeInput = () => {
+        return (
+            <div className="ml-10 bg-gray-200 p-2 rounded-md">
+                <label htmlFor="fromDate" className="mr-3 font-bold">From:</label>
+                <input type="date" id="fromDate" ref={fromDateRef} />
+
+                <label htmlFor="toDate" className="ml-10 mr-3 font-bold">To:</label>
+                <input type="date" id="toDate" ref={toDateRef} />
+
+                <button
+                    onClick={() => filterData()}
+                    className="py-2 px-4 ml-5 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white rounded-md"
+                >
+                    Search
+                </button>
             </div>
         )
     }
@@ -70,6 +121,8 @@ export const Report = () => {
         )
     }
 
+
+    //main render
     return (
         <div>
             <header className="bg-white shadow">
@@ -77,7 +130,13 @@ export const Report = () => {
                     <h1 className="text-3xl font-bold text-gray-900">Report</h1>
                 </div>
             </header>
-            {renderTypeButton()}
+
+
+            <div className="inline-flex justify-left ml-5 mt-5 items-center">
+                {renderTypeButton()}
+                {renderRangeInput()}
+            </div>
+
 
             <div className="container mx-auto px-4 sm:px-8 max-w-3xl">
                 <div className="py-2">
@@ -96,7 +155,7 @@ export const Report = () => {
                                             Detail
                                         </th>
                                         <th scope="col" className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
-                                            Amount
+                                            Amount (MYR)
                                         </th>
                                         <th scope="col" className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
                                             Date
