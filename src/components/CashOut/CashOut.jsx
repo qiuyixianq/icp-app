@@ -61,7 +61,7 @@ export const CashOut = () => {
                 reference: referenceRef.current.value,
                 detail: detailRef.current.value,
                 amount: +amountRef.current.value,
-                date: new Date()
+                date: new Date().toDateString()
             }
 
             //clear input field

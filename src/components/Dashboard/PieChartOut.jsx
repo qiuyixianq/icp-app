@@ -11,7 +11,7 @@ export const PieChartOut = props => {
     const { cashOutData } = useSelector(state => state);
     const { rangeList, currentRange } = props;
     const dispatch = useDispatch();
-    
+
 
     //filter data
     const filterData = () => {
@@ -30,23 +30,25 @@ export const PieChartOut = props => {
             default: console.log('this wont happen');
         }
 
-        //summing each cashOut category's amount
-        for (let i = 0; i < rangedCashOutData.length; i++) {
-            let groupData = rangedCashOutData.filter(el => el.category === cashOutCategory[i]);
+        if (rangedCashOutData.length > 0) {
+            //summing each cashOut category's amount
+            for (let i = 0; i < rangedCashOutData.length; i++) {
+                let groupData = rangedCashOutData.filter(el => el.category === cashOutCategory[i]);
 
-            let amountSum = 0;
-            if (groupData.length !== 0) {
-                rangedCategory.push(groupData[0].category);
-                for (let j = 0; j < groupData.length; j++) {
-                    amountSum += groupData[j].amount;
+                let amountSum = 0;
+                if (groupData.length !== 0) {
+                    rangedCategory.push(groupData[0].category);
+                    for (let j = 0; j < groupData.length; j++) {
+                        amountSum += groupData[j].amount;
+                    }
+                    data.push(amountSum);
                 }
-                data.push(amountSum);
             }
+            //dispatch the data to top lv
+            const totalExpense = data.reduce((p, c) => p + c);
+            dispatch(setTotalExpense(totalExpense));
+            return { data, rangedCategory };
         }
-        //dispatch the data to top lv
-        const totalExpense = data.reduce((p,c) => p + c);
-        dispatch(setTotalExpense(totalExpense));
-        return { data, rangedCategory };
     }
 
 
@@ -85,7 +87,7 @@ export const PieChartOut = props => {
                 />
             </div>
 
-            <h3 className="font-bold mt-2 text-2xl">Total: <span>{cleanData.data.reduce((p,c) => p + c)}</span> MYR</h3>
+            <h3 className="font-bold mt-2 text-2xl">Total: <span>{cleanData.data.reduce((p, c) => p + c)}</span> MYR</h3>
         </div>
     );
 

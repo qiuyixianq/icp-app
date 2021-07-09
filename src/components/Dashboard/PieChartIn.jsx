@@ -30,23 +30,25 @@ export const PieChartIn = props => {
             default: ;
         }
 
-        //summing each cashOut category's amount
-        for (let i = 0; i < rangedCashInData.length; i++) {
-            let groupData = rangedCashInData.filter(el => el.category === cashInCategory[i]);
+        if (rangedCashInData.length > 0) {
+            //summing each cashOut category's amount
+            for (let i = 0; i < rangedCashInData.length; i++) {
+                let groupData = rangedCashInData.filter(el => el.category === cashInCategory[i]);
 
-            let amountSum = 0;
-            if (groupData.length !== 0) {
-                rangedCategory.push(groupData[0].category);
-                for (let j = 0; j < groupData.length; j++) {
-                    amountSum += groupData[j].amount;
+                let amountSum = 0;
+                if (groupData.length !== 0) {
+                    rangedCategory.push(groupData[0].category);
+                    for (let j = 0; j < groupData.length; j++) {
+                        amountSum += groupData[j].amount;
+                    }
+                    data.push(amountSum);
                 }
-                data.push(amountSum);
             }
+            //dispatch the data to top lv
+            const totalEarn = data.reduce((p, c) => p + c);
+            dispatch(setTotalEarn(totalEarn));
+            return { data, rangedCategory };
         }
-        //dispatch the data to top lv
-        const totalEarn = data.reduce((p, c) => p + c);
-        dispatch(setTotalEarn(totalEarn));
-        return { data, rangedCategory };
     }
 
     const cleanData = filterData();
