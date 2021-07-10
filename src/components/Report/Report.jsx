@@ -6,30 +6,37 @@ export const Report = () => {
     const { cashInData, cashOutData } = useSelector(state => state);
     const fromDateRef = useRef(null);
     const toDateRef = useRef(null);
-    const [ filteredData, setFilteredData ] = useState(reportType === 'cashin' ? cashInData : cashOutData);
+    const [filteredData, setFilteredData] = useState(reportType === 'cashin' ? cashInData : cashOutData);
 
+    //reset data when type switch 
     useEffect(() => {
         setFilteredData(reportType === 'cashin' ? cashInData : cashOutData);
         fromDateRef.current.value = toDateRef.current.value = "";
-    },[reportType, cashInData, cashOutData]);
+    }, [reportType, cashInData, cashOutData]);
 
-    //click event
+    //filter event
     const filterData = () => {
         const fromValueString = fromDateRef.current.value;
         const toValueString = toDateRef.current.value;
 
-        if(!fromValueString || !toValueString) alert('Empty Date Input');
+        if (!fromValueString || !toValueString) alert('Empty Date Input');
         else {
             const fromValue = new Date(fromValueString);
             const toValue = new Date(toValueString);
 
-            if(fromValue > toValue) alert('Invalid Date');
+            if (fromValue > toValue) alert('Invalid Date');
             else {
                 let rangedData = (reportType === 'cashin' ? cashInData : cashOutData);
-                rangedData = rangedData.filter(data => fromValue <= new Date(data.date) && new Date(data.date) <= toValue );
+                rangedData = rangedData.filter(data => fromValue <= new Date(data.date) && new Date(data.date) <= toValue);
                 setFilteredData(rangedData);
             }
         }
+    }
+
+    //reset event
+    const resetData = () => {
+        setFilteredData(reportType === 'cashin' ? cashInData:cashOutData);
+        fromDateRef.current.value = toDateRef.current.value = "";
     }
 
     //render reportType radio button
@@ -77,60 +84,74 @@ export const Report = () => {
                 >
                     Search
                 </button>
+                <button
+                    onClick={() => resetData()}
+                    className="py-2 px-4 ml-5 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white rounded-md"
+                >
+                    Reset
+                </button>
             </div>
         )
     }
 
     //render Data
     const renderTransactions = () => {
-
-        return (
-            filteredData.map((transaction, index) => (
-                <tr key={index} >
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <div>
-                            <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                <span aria-hidden="true" className="absolute inset-0 bg-green-200 opacity-50 rounded-full">
+        if (filteredData.length === 0) {
+            return (
+                <div>
+                    <h3 className="text-white">No Transaction Found</h3>
+                </div>
+            );
+        } else {
+            return (
+                filteredData.map((transaction, index) => (
+                    <tr key={index} >
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <div>
+                                <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                    <span aria-hidden="true" className="absolute inset-0 bg-green-200 opacity-50 rounded-full">
+                                    </span>
+                                    <span className="relative font-bold">
+                                        {transaction.category}
+                                    </span>
+                                </span>
+                            </div>
+                        </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-900 whitespace-no-wrap">
+                                {transaction.reference}
+                            </p>
+                        </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-900 whitespace-no-wrap">
+                                {transaction.detail}
+                            </p>
+                        </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <span className={`${reportType === 'cashin' ? 'text-green-900' : 'text-red-900'} relative inline-block px-3 py-1 font-semibold leading-tight`}>
+                                <span aria-hidden="true" className={`${reportType === 'cashin' ? 'bg-green-200' : 'bg-red-500'} absolute inset-0 opacity-50 rounded-full`}>
                                 </span>
                                 <span className="relative">
-                                    {transaction.category}
+                                    {transaction.amount}
                                 </span>
                             </span>
-                        </div>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                            {transaction.reference}
-                        </p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                            {transaction.detail}
-                        </p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                            <span aria-hidden="true" className={`${reportType === 'cashin' ? 'bg-green-200' : 'bg-red-500'} absolute inset-0 opacity-50 rounded-full`}>
-                            </span>
-                            <span className="relative">
-                                {transaction.amount}
-                            </span>
-                        </span>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                            {transaction.date}
-                        </p>
-                    </td>
-                </tr>
-            ))
-        )
+                        </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-900 whitespace-no-wrap">
+                                {transaction.date}
+                            </p>
+                        </td>
+                    </tr>
+                ))
+            )
+        }
+
     }
 
 
     //main render
     return (
-        <div>
+        <div className="bg-gray-800" >
             <header className="bg-white shadow">
                 <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <h1 className="text-3xl font-bold text-gray-900">Report</h1>
@@ -151,19 +172,19 @@ export const Report = () => {
                             <table className="min-w-full leading-normal ">
                                 <thead>
                                     <tr>
-                                        <th scope="col" className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
+                                        <th scope="col" className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold">
                                             Category
                                         </th>
-                                        <th scope="col" className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
+                                        <th scope="col" className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold">
                                             Reference
                                         </th>
-                                        <th scope="col" className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
+                                        <th scope="col" className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold">
                                             Detail
                                         </th>
-                                        <th scope="col" className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
+                                        <th scope="col" className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold">
                                             Amount (MYR)
                                         </th>
-                                        <th scope="col" className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
+                                        <th scope="col" className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold">
                                             Date
                                         </th>
                                     </tr>
