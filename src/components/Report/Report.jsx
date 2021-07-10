@@ -10,7 +10,7 @@ export const Report = () => {
 
     useEffect(() => {
         setFilteredData(reportType === 'cashin' ? cashInData : cashOutData);
-        fromDateRef.current.value = toDateRef.current.value = 0;
+        fromDateRef.current.value = toDateRef.current.value = "";
     },[reportType, cashInData, cashOutData]);
 
     //click event
@@ -25,8 +25,8 @@ export const Report = () => {
 
             if(fromValue > toValue) alert('Invalid Date');
             else {
-                let rangedData = filteredData;
-                rangedData = rangedData.filter(data => fromValue < new Date(data.date) && new Date(data.date) < toValue );
+                let rangedData = (reportType === 'cashin' ? cashInData : cashOutData);
+                rangedData = rangedData.filter(data => fromValue <= new Date(data.date) && new Date(data.date) <= toValue );
                 setFilteredData(rangedData);
             }
         }
@@ -83,7 +83,6 @@ export const Report = () => {
 
     //render Data
     const renderTransactions = () => {
-        //const data = reportType === 'cashin' ? cashInData : cashOutData;
 
         return (
             filteredData.map((transaction, index) => (
