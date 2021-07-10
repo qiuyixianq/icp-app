@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 export const Report = () => {
@@ -6,7 +6,12 @@ export const Report = () => {
     const { cashInData, cashOutData } = useSelector(state => state);
     const fromDateRef = useRef(null);
     const toDateRef = useRef(null);
+    const [ filteredData, setFilteredData ] = useState(reportType === 'cashin' ? cashInData : cashOutData);
 
+    useEffect(() => {
+        setFilteredData(reportType === 'cashin' ? cashInData : cashOutData);
+        fromDateRef.current.value = toDateRef.current.value = 0;
+    },[reportType, cashInData, cashOutData]);
 
     //click event
     const filterData = () => {
@@ -20,7 +25,9 @@ export const Report = () => {
 
             if(fromValue > toValue) alert('Invalid Date');
             else {
-                
+                let rangedData = filteredData;
+                rangedData = rangedData.filter(data => fromValue < new Date(data.date) && new Date(data.date) < toValue );
+                setFilteredData(rangedData);
             }
         }
     }
@@ -76,10 +83,10 @@ export const Report = () => {
 
     //render Data
     const renderTransactions = () => {
-        const data = reportType === 'cashin' ? cashInData : cashOutData;
+        //const data = reportType === 'cashin' ? cashInData : cashOutData;
 
         return (
-            data.map((transaction, index) => (
+            filteredData.map((transaction, index) => (
                 <tr key={index} >
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <div>

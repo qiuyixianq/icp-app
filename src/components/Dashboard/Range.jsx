@@ -15,7 +15,7 @@ export const Range = prop => {
 
 
     return (
-        <div className="w-1/6">
+        <div className="lg:w-1/6">
             <Listbox value={selected} onChange={onRangeChange}>
                 {({ open }) => (
                     <>

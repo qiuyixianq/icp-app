@@ -27,7 +27,7 @@ export const Dashboard = () => {
                             <Range onRangeChange={setRange} range={range} />
 
 
-                            <div className="flex mt-10 items-center">
+                            <div className="flex flex-wrap mt-10 items-center">
                                 <PieChartOut rangeList={rangeList} currentRange={range} />
                                 <PieChartIn rangeList={rangeList} currentRange={range} />
                                 <ProfitLoss />
