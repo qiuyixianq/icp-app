@@ -32,7 +32,7 @@ export const PieChartIn = props => {
 
         if (rangedCashInData.length > 0) {
             //summing each cashOut category's amount
-            for (let i = 0; i < rangedCashInData.length; i++) {
+            for (let i = 0; i < cashInCategory.length; i++) {
                 let groupData = rangedCashInData.filter(el => el.category === cashInCategory[i]);
 
                 let amountSum = 0;

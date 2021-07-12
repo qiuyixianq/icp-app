@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { OutCategory } from './OutCategory';
 import { addCashOut } from './cashOutSlice';
 import { updateBalance } from '../../app/balanceSlice';
+import { addCashOutCategory } from '../../app/categorySlice';
 
 
 export const CashOut = () => {
@@ -53,6 +54,12 @@ export const CashOut = () => {
         return () => clearTimeout(hideTimeOut);
     }, [showSuccess]);
 
+    //handle new category
+    const addNewCategory = () => {
+        const categoryName = prompt('Insert Category Name:');
+        dispatch(addCashOutCategory(categoryName));
+    }
+
     //handle submit
     const saveRecord = () => {
         if (referenceRef.current.value && amountRef.current.value) {
@@ -71,7 +78,7 @@ export const CashOut = () => {
             dispatch(updateBalance(-newRecord.amount));
             setShowSuccess(true);
         }
-        
+
         else setShowAlert(true);
     }
 
@@ -173,6 +180,12 @@ export const CashOut = () => {
             <main>
                 <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
                     <div className="px-4 py-6 sm:px-0">
+                        <button
+                            onClick={() => addNewCategory()}
+                            className="bg-gray-600 hover:bg-gray-700 text-white p-1 rounded-md"
+                        >
+                            Add New Category
+                        </button>
                         <div className="border-2 border-gray-300 rounded-lg flex" >
 
 

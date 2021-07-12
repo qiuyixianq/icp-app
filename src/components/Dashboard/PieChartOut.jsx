@@ -12,7 +12,6 @@ export const PieChartOut = props => {
     const { rangeList, currentRange } = props;
     const dispatch = useDispatch();
 
-
     //filter data
     const filterData = () => {
         let data = [];
@@ -32,7 +31,7 @@ export const PieChartOut = props => {
 
         if (rangedCashOutData.length > 0) {
             //summing each cashOut category's amount
-            for (let i = 0; i < rangedCashOutData.length; i++) {
+            for (let i = 0; i < cashOutCategory.length; i++) {
                 let groupData = rangedCashOutData.filter(el => el.category === cashOutCategory[i]);
 
                 let amountSum = 0;
