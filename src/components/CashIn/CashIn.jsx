@@ -58,7 +58,7 @@ export const CashIn = () => {
     //handle new category
     const addNewCategory = () => {
         const categoryName = prompt('Insert Category Name:');
-        dispatch(addCashInCategory(categoryName));
+        if(categoryName)dispatch(addCashInCategory(categoryName));
     }
 
     //handle submit

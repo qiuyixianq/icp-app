@@ -57,7 +57,7 @@ export const CashOut = () => {
     //handle new category
     const addNewCategory = () => {
         const categoryName = prompt('Insert Category Name:');
-        dispatch(addCashOutCategory(categoryName));
+        if (categoryName) dispatch(addCashOutCategory(categoryName));
     }
 
     //handle submit
