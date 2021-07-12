@@ -23,7 +23,6 @@ export const Report = () => {
         else {
             const fromValue = new Date(fromValueString);
             const toValue = new Date(toValueString);
-
             if (fromValue > toValue) alert('Invalid Date');
             else {
                 let rangedData = (reportType === 'cashin' ? cashInData : cashOutData);
@@ -98,9 +97,9 @@ export const Report = () => {
     const renderTransactions = () => {
         if (filteredData.length === 0) {
             return (
-                <div>
-                    <h3 className="text-white">No Transaction Found</h3>
-                </div>
+                <tr>
+                    <td className="text-white">No Transaction Found</td>
+                </tr>
             );
         } else {
             return (

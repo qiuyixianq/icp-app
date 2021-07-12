@@ -184,7 +184,7 @@ export const CashIn = () => {
                     <div className="px-4 py-6 sm:px-0">
                         <button
                             onClick={() => addNewCategory()}
-                            className="bg-gray-600 hover:bg-gray-700 text-white p-1 rounded-md"
+                            className="bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white p-1 px-2 rounded-md"
                         >
                             Add New Category
                         </button>

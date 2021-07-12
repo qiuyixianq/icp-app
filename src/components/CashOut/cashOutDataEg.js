@@ -57,13 +57,13 @@ export const cashOutData = [
         reference: 'to Jacky',
         detail: '10 premium mousepad',
         amount: 500,
-        date: new Date(2021, 6, 1, 10, 28, 0, 0).toDateString()
+        date: new Date(2021, 6, 2, 10, 28, 0, 0).toDateString()
     },
     {
         category: 'Stock',
         reference: 'to Jinny Trading',
         detail: '5 wired mouse',
         amount: 150,
-        date: new Date(2021, 6, 1, 11, 28, 0, 0).toDateString()
+        date: new Date(2021, 6, 4, 11, 28, 0, 0).toDateString()
     },
 ];
