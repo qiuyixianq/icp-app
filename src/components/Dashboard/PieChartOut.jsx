@@ -3,12 +3,13 @@ import { Doughnut } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTotalExpense } from './dashboardSlice';
 
+//could be better by picking random colour according to num of data set 
 const backgroundColor = ['#8464a0', '#0a407a', '#C9DE00', '#2086ec', '#00A6B4', '#6800B4', '#cea9bc'];
 const hoverBackgroundColor = ['#532d75', '#082a4f', '#4B5000', '#145391', '#003350', '#35014F', '#99607e'];
 
 export const PieChartOut = props => {
     const { cashOutCategory } = useSelector(state => state.category);
-    const { cashOutData } = useSelector(state => state);
+    const { cashOutData } = useSelector(state => state.cashInOut );
     const { rangeList, currentRange } = props;
     const dispatch = useDispatch();
 

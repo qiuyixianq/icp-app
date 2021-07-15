@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 export const Report = () => {
     const [reportType, setReportType] = useState('cashin');
-    const { cashInData, cashOutData } = useSelector(state => state);
+    const { cashInData, cashOutData } = useSelector(state => state.cashInOut);
     const fromDateRef = useRef(null);
     const toDateRef = useRef(null);
     const [filteredData, setFilteredData] = useState(reportType === 'cashin' ? cashInData : cashOutData);

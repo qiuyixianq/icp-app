@@ -9,7 +9,7 @@ const hoverBackgroundColor = ['#00523c', '#5659c7', '#699187', '#3ca3a3', '#147e
 
 export const PieChartIn = props => {
     const { cashInCategory } = useSelector(state => state.category);
-    const { cashInData } = useSelector(state => state);
+    const { cashInData } = useSelector(state => state.cashInOut);
     const { rangeList, currentRange } = props;
     const dispatch = useDispatch();
 
