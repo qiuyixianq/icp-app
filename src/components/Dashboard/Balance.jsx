@@ -9,8 +9,8 @@ export const Balance = () => {
 
     //main render
     return (
-        <div>
-            <h3 className="font-bold text-xl">Balance</h3>
+        <div className="mt-5">
+            <h3 className="font-bold text-xl">Current Balance</h3>
 
 
             <div className="flex items-center justify-center h-72 w-72 shadow-sm rounded-xl hover:shadow-lg transition-shadow ">

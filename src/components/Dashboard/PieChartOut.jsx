@@ -66,7 +66,7 @@ export const PieChartOut = props => {
 
     //main render
     return (
-        <div>
+        <div className="mt-5">
             <h3 className="font-bold text-xl">Expenses</h3>
 
             <div className="h-72 w-72 shadow-sm rounded-xl hover:shadow-lg transition-shadow ">

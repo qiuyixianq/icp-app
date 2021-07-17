@@ -8,7 +8,7 @@ const hoverBackgroundColor = ['#699187', '#bd534d'];
 
 
 export const ProfitLoss = () => {
-    const { totalExpense, totalEarn } = useSelector(state => state.profitLoss);
+    const { totalExpense = 0 , totalEarn = 0 } = useSelector(state => state.profitLoss);
 
     const prolossData = {
         labels: ['Profit', 'Loss'],
@@ -21,7 +21,7 @@ export const ProfitLoss = () => {
     }
 
     return (
-        <div>
+        <div className="mt-5">
             <h3 className="font-bold text-xl">Profit vs Loss</h3>
 
             <div className="h-64 w-64 shadow-sm rounded-xl hover:shadow-lg transition-shadow ">

@@ -4,7 +4,7 @@ import { PieChartOut } from './PieChartOut';
 import { PieChartIn } from './PieChartIn';
 import { ProfitLoss } from './ProfitLoss';
 import { Balance } from './Balance';
-//import { LineChart } from './LineChart';
+import { RecentProfitLoss } from './RecentProfitLoss';
 
 const rangeList = ['This Month', 'Last Month', 'Last Three Month'];
 
@@ -32,6 +32,7 @@ export const Dashboard = () => {
                                 <PieChartIn rangeList={rangeList} currentRange={range} />
                                 <ProfitLoss />
                                 <Balance />
+                                <RecentProfitLoss />
                             </div>
                         </div>
                     </div>
