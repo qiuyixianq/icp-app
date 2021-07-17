@@ -35,13 +35,10 @@ export const PieChartOut = props => {
             for (let i = 0; i < cashOutCategory.length; i++) {
                 let groupData = rangedCashOutData.filter(el => el.category === cashOutCategory[i]);
 
-                let amountSum = 0;
                 if (groupData.length !== 0) {
                     rangedCategory.push(groupData[0].category);
-                    for (let j = 0; j < groupData.length; j++) {
-                        amountSum += groupData[j].amount;
-                    }
-                    data.push(amountSum);
+                    const amountSum = groupData.reduce((sum,curData) => ({amount: sum.amount + curData.amount}));
+                    data.push(amountSum.amount);
                 }
             }
             //dispatch the data to top lv
