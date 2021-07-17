@@ -5,12 +5,37 @@ import { PieChartIn } from './PieChartIn';
 import { ProfitLoss } from './ProfitLoss';
 import { Balance } from './Balance';
 import { RecentProfitLoss } from './RecentProfitLoss';
+import { useSelector } from 'react-redux';
 
 const rangeList = ['This Month', 'Last Month', 'Last Three Month'];
 
 
 export const Dashboard = () => {
-    const [range, setRange] = useState(rangeList[0]);    
+    const [range, setRange] = useState(rangeList[0]);
+    const { cashInData, cashOutData } = useSelector(state => state.cashInOut);
+
+    let rangedCashInData, rangedCashOutData = [];
+    switch(range){
+        //This Month
+        case rangeList[0]: {
+            rangedCashInData = cashInData.filter(data => new Date(data.date).getMonth() === new Date().getMonth());
+            rangedCashOutData = cashOutData.filter(data => new Date(data.date).getMonth() === new Date().getMonth());
+            break;
+        }
+        //Last Month
+        case rangeList[1]: {
+            rangedCashInData = cashInData.filter(el => new Date(el.date).getMonth() === new Date().getMonth() - 1);
+            rangedCashOutData = cashOutData.filter(el => new Date(el.date).getMonth() === new Date().getMonth() - 1);
+            break;
+        }
+        //Last Three Month
+        case rangeList[2]: {
+            rangedCashInData = cashInData.filter(el => new Date(el.date).getMonth() >= new Date().getMonth() - 3);
+            rangedCashOutData = cashOutData.filter(el => new Date(el.date).getMonth() >= new Date().getMonth() - 3);
+            break;
+        }
+        default: 
+    }
     
     return (
         <div>
@@ -28,8 +53,8 @@ export const Dashboard = () => {
 
 
                             <div className="flex flex-wrap mt-10 items-center">
-                                <PieChartOut rangeList={rangeList} currentRange={range} />
-                                <PieChartIn rangeList={rangeList} currentRange={range} />
+                                <PieChartOut cashData={rangedCashOutData} />
+                                <PieChartIn cashData={rangedCashInData} />
                                 <ProfitLoss />
                                 <Balance />
                                 <RecentProfitLoss />

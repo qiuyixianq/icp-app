@@ -9,26 +9,13 @@ const hoverBackgroundColor = ['#00523c', '#5659c7', '#699187', '#3ca3a3', '#147e
 
 export const PieChartIn = props => {
     const { cashInCategory } = useSelector(state => state.category);
-    const { cashInData } = useSelector(state => state.cashInOut);
-    const { rangeList, currentRange } = props;
+    const { cashData: rangedCashInData } = props;
     const dispatch = useDispatch();
 
     //filter data
     const filterData = () => {
         let data = [];
         let rangedCategory = [];
-        let rangedCashInData;
-
-        switch (currentRange) {
-            //This Month
-            case rangeList[0]: rangedCashInData = cashInData.filter(el => new Date(el.date).getMonth() === new Date().getMonth()); break;
-            //Last Month
-            case rangeList[1]: rangedCashInData = cashInData.filter(el => new Date(el.date).getMonth() === new Date().getMonth() - 1); break;
-            //Last Three Month
-            case rangeList[2]: rangedCashInData = cashInData.filter(el => new Date(el.date).getMonth() >= new Date().getMonth() - 3); break;
-
-            default: ;
-        }
 
         if (rangedCashInData.length > 0) {
             //summing each cashOut category's amount
