@@ -1,7 +1,6 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
-import { useDispatch, useSelector } from 'react-redux';
-import { setTotalExpense } from './dashboardSlice';
+import { useSelector } from 'react-redux';
 
 //could be better by picking random colour according to num of data set 
 const backgroundColor = ['#8464a0', '#0a407a', '#C9DE00', '#2086ec', '#00A6B4', '#6800B4', '#cea9bc'];
@@ -9,26 +8,12 @@ const hoverBackgroundColor = ['#532d75', '#082a4f', '#4B5000', '#145391', '#0033
 
 export const PieChartOut = props => {
     const { cashOutCategory } = useSelector(state => state.category);
-    // const { cashOutData } = useSelector(state => state.cashInOut );
     const { cashData: rangedCashOutData } = props;
-    const dispatch = useDispatch();
 
     //filter data
     const filterData = () => {
         let data = [];
         let rangedCategory = [];
-        // let rangedCashOutData;
-
-        // switch (currentRange) {
-        //     //This Month
-        //     case rangeList[0]: rangedCashOutData = cashOutData.filter(el => new Date(el.date).getMonth() === new Date().getMonth()); break;
-        //     //Last Month
-        //     case rangeList[1]: rangedCashOutData = cashOutData.filter(el => new Date(el.date).getMonth() === new Date().getMonth() - 1); break;
-        //     //Last Three Month
-        //     case rangeList[2]: rangedCashOutData = cashOutData.filter(el => new Date(el.date).getMonth() >= new Date().getMonth() - 3); break;
-
-        //     default: console.log('this wont happen');
-        // }
 
         if (rangedCashOutData.length > 0) {
             //summing each cashOut category's amount
@@ -41,9 +26,6 @@ export const PieChartOut = props => {
                     data.push(amountSum.amount);
                 }
             }
-            //dispatch the data to top lv
-            const totalExpense = data.reduce((p, c) => p + c);
-            dispatch(setTotalExpense(totalExpense));
             return { data, rangedCategory };
         }
     }

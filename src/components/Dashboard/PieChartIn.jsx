@@ -1,7 +1,6 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
-import { useDispatch, useSelector } from 'react-redux';
-import { setTotalEarn } from './dashboardSlice';
+import { useSelector } from 'react-redux';
 
 
 const backgroundColor = ['#006a4e', '#797df6', '#8abaae', '#4adede', '#1aa6ec', '#1e2e97'];
@@ -10,7 +9,6 @@ const hoverBackgroundColor = ['#00523c', '#5659c7', '#699187', '#3ca3a3', '#147e
 export const PieChartIn = props => {
     const { cashInCategory } = useSelector(state => state.category);
     const { cashData: rangedCashInData } = props;
-    const dispatch = useDispatch();
 
     //filter data
     const filterData = () => {
@@ -28,9 +26,6 @@ export const PieChartIn = props => {
                     data.push(amountSum.amount);
                 }
             }
-            //dispatch the data to top lv
-            const totalEarn = data.reduce((p, c) => p + c);
-            dispatch(setTotalEarn(totalEarn));
             return { data, rangedCategory };
         }
     }

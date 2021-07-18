@@ -1,14 +1,19 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
-import { useSelector } from 'react-redux';
 
 const backgroundColor = ['#8abaae', '#FF6961'];
 const hoverBackgroundColor = ['#699187', '#bd534d'];
 
 
 
-export const ProfitLoss = () => {
-    const { totalExpense = 0 , totalEarn = 0 } = useSelector(state => state.profitLoss);
+export const ProfitLoss = props => {
+    const { cashInData, cashOutData } = props;
+
+    const calProLossArr = () => {
+        const totalSumIn = cashInData.reduce((sum,curData) => ({amount: sum.amount + curData.amount}));
+        const totalSumOut = cashOutData.reduce((sum,curData) => ({amount: sum.amount + curData.amount}));
+        return [totalSumIn.amount,totalSumOut.amount];
+    }
 
     const prolossData = {
         labels: ['Profit', 'Loss'],
@@ -16,7 +21,7 @@ export const ProfitLoss = () => {
             label: 'Profit/Loss',
             backgroundColor,
             hoverBackgroundColor,
-            data: [totalEarn, totalExpense]
+            data: calProLossArr()
         }]
     }
 
@@ -42,7 +47,7 @@ export const ProfitLoss = () => {
                 />
             </div>
 
-            <h3 className="font-bold mt-2 text-2xl">Profit: <span>{totalEarn-totalExpense}</span> MYR</h3>
+            <h3 className="font-bold mt-2 text-2xl">Profit: <span>{calProLossArr().reduce((p,c) => p - c)}</span> MYR</h3>
         </div>
     )
 }

@@ -55,7 +55,7 @@ export const Dashboard = () => {
                             <div className="flex flex-wrap mt-10 items-center">
                                 <PieChartOut cashData={rangedCashOutData} />
                                 <PieChartIn cashData={rangedCashInData} />
-                                <ProfitLoss />
+                                <ProfitLoss cashInData={rangedCashInData} cashOutData={rangedCashOutData} />
                                 <Balance />
                                 <RecentProfitLoss />
                             </div>
