@@ -1,21 +1,19 @@
 import React, { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentNav } from './navBarSlice';
+import { Link, useLocation } from 'react-router-dom';
 
 
-const navigation = ['Dashboard', 'Cash In', 'Cash Out', 'Report']
-const profile = ['Your Profile', 'Settings', 'Sign out']
+const navigation = ['Dashboard', 'Cash In', 'Cash Out', 'Report'];
+const path = ['/dashboard','/cashin','/cashout', '/report'];
+const profile = ['Your Profile', 'Settings', 'Sign out'];
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 export const NavBar = () => {
-    const dispatch = useDispatch();
-    const { currentNav } = useSelector(state => state.navBar);
+    const location = useLocation();
 
     return (
         <div>
@@ -35,14 +33,13 @@ export const NavBar = () => {
                                     <div className="hidden md:block">
                                         <div className="ml-10 flex items-baseline space-x-4">
                                             {navigation.map((item, itemIdx) =>
-                                                currentNav === item ? (
+                                                location.pathname === path[itemIdx] ? (
                                                     <Fragment key={itemIdx}>
                                                         {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
 
-                                                        <Link to={`/${item.toLowerCase().replace(/ /g, '')}`}>
+                                                        <Link to={path[itemIdx]}>
                                                             <span
                                                                 className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                                                                onClick={() => dispatch(setCurrentNav(item))}
                                                             >
                                                                 {item}
                                                             </span>
@@ -50,10 +47,9 @@ export const NavBar = () => {
                                                     </Fragment>
                                                 ) : (
 
-                                                    <Link to={`/${item.toLowerCase().replace(/ /g, '')}`} key={itemIdx}>
+                                                    <Link to={path[itemIdx]} key={itemIdx}>
                                                         <span
                                                             className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                                                            onClick={() => dispatch(setCurrentNav(item))}
                                                         >
                                                             {item}
                                                         </span>
@@ -133,23 +129,21 @@ export const NavBar = () => {
                         <Disclosure.Panel className="md:hidden">
                             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                                 {navigation.map((item, itemIdx) =>
-                                    currentNav === item ? (
+                                    location.pathname === path[itemIdx] ? (
                                         <Fragment key={itemIdx}>
                                             {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                                            <Link to={`/${item.toLowerCase().replace(/ /g, '')}`}>
+                                            <Link to={path[itemIdx]}>
                                                 <span
                                                     className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-                                                    onClick={() => dispatch(setCurrentNav(item))}
                                                 >
                                                     {item}
                                                 </span>
                                             </Link>
                                         </Fragment>
                                     ) : (
-                                        <Link to={`/${item.toLowerCase().replace(/ /g, '')}`} key={itemIdx}>
+                                        <Link to={path[itemIdx]} key={itemIdx}>
                                             <span
                                                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                                                onClick={() => dispatch(setCurrentNav(item))}
                                             >
                                                 {item}
                                             </span>
