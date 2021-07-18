@@ -1,6 +1,7 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
+import { filterData } from './filterData';
 
 //could be better by picking random colour according to num of data set 
 const backgroundColor = ['#8464a0', '#0a407a', '#C9DE00', '#2086ec', '#00A6B4', '#6800B4', '#cea9bc'];
@@ -9,29 +10,7 @@ const hoverBackgroundColor = ['#532d75', '#082a4f', '#4B5000', '#145391', '#0033
 export const PieChartOut = props => {
     const { cashOutCategory } = useSelector(state => state.category);
     const { cashData: rangedCashOutData } = props;
-
-    //filter data
-    const filterData = () => {
-        let data = [];
-        let rangedCategory = [];
-
-        if (rangedCashOutData.length > 0) {
-            //summing each cashOut category's amount
-            for (let i = 0; i < cashOutCategory.length; i++) {
-                let groupData = rangedCashOutData.filter(el => el.category === cashOutCategory[i]);
-
-                if (groupData.length !== 0) {
-                    rangedCategory.push(groupData[0].category);
-                    const amountSum = groupData.reduce((sum,curData) => ({amount: sum.amount + curData.amount}));
-                    data.push(amountSum.amount);
-                }
-            }
-            return { data, rangedCategory };
-        }
-    }
-
-
-    const cleanData = filterData();
+    const cleanData = filterData(rangedCashOutData, cashOutCategory);
     //pie data
     const pieState = {
         labels: cleanData.rangedCategory,

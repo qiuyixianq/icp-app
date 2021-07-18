@@ -1,6 +1,7 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
+import { filterData } from './filterData';
 
 
 const backgroundColor = ['#006a4e', '#797df6', '#8abaae', '#4adede', '#1aa6ec', '#1e2e97'];
@@ -9,28 +10,7 @@ const hoverBackgroundColor = ['#00523c', '#5659c7', '#699187', '#3ca3a3', '#147e
 export const PieChartIn = props => {
     const { cashInCategory } = useSelector(state => state.category);
     const { cashData: rangedCashInData } = props;
-
-    //filter data
-    const filterData = () => {
-        let data = [];
-        let rangedCategory = [];
-
-        if (rangedCashInData.length > 0) {
-            //summing each cashOut category's amount
-            for (let i = 0; i < cashInCategory.length; i++) {
-                let groupData = rangedCashInData.filter(el => el.category === cashInCategory[i]);
-
-                if (groupData.length !== 0) {
-                    rangedCategory.push(groupData[0].category);
-                    const amountSum = groupData.reduce((sum,curData) => ({amount: sum.amount + curData.amount}));
-                    data.push(amountSum.amount);
-                }
-            }
-            return { data, rangedCategory };
-        }
-    }
-
-    const cleanData = filterData();
+    const cleanData = filterData(rangedCashInData,cashInCategory);
     //pie data
     const pieState = {
         labels: cleanData.rangedCategory,
