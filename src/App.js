@@ -15,7 +15,7 @@ function App() {
 
       <Switch>
 
-        <Route path='/' exact>
+        <Route path='/icp-app' exact>
           <div className="mt-10">
             <h3 className="text-xl text-center">Welcome, Khoo</h3>
             <img className="mx-auto" src={appreciate} alt="welcome" />

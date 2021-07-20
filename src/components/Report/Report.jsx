@@ -34,7 +34,7 @@ export const Report = () => {
 
     //reset event
     const resetData = () => {
-        setFilteredData(reportType === 'cashin' ? cashInData:cashOutData);
+        setFilteredData(reportType === 'cashin' ? cashInData : cashOutData);
         fromDateRef.current.value = toDateRef.current.value = "";
     }
 
@@ -158,10 +158,12 @@ export const Report = () => {
             </header>
 
 
-            <div className="inline-flex justify-left ml-5 mt-5 items-center">
-                {renderTypeButton()}
-                {renderRangeInput()}
-            </div>
+            <center>
+                <div className="inline-flex justify-left ml-5 mt-5 items-center">
+                    {renderTypeButton()}
+                    {renderRangeInput()}
+                </div>
+            </center>
 
 
             <div className="container mx-auto px-4 sm:px-8 max-w-3xl">
