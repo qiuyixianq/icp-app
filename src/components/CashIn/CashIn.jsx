@@ -5,16 +5,21 @@ import { addCashIn } from './cashInSlice';
 import { updateBalance } from '../../app/balanceSlice';
 import { addCashInCategory } from '../../app/categorySlice';
 
+const initialForm = {
+    category: '',
+    reference: '',
+    detail: '',
+    amount: 0,
+    date: new Date().toDateString()
+}
 
 export const CashIn = () => {
     const { cashInCategory } = useSelector(state => state.category);
     const [selectedCategory, setSelectedCategory] = useState(cashInCategory[0]);
     const dispatch = useDispatch();
-    const referenceRef = useRef(null);
-    const detailRef = useRef(null);
-    const amountRef = useRef(null);
     const alertRef = useRef(null);
     const successRef = useRef(null);
+    const [ form, setForm ] = useState(initialForm);
     const [showAlert, setShowAlert] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
 
@@ -63,23 +68,17 @@ export const CashIn = () => {
 
     //handle submit
     const saveRecord = () => {
-        if (referenceRef.current.value && amountRef.current.value) {
-            const newRecord = {
-                category: selectedCategory,
-                reference: referenceRef.current.value,
-                detail: detailRef.current.value,
-                amount: +amountRef.current.value,
-                date: new Date().toDateString()
-            }
-
-            //clear input field
-            referenceRef.current.value = detailRef.current.value = amountRef.current.value = '';
-
+        if (form.reference && form.amount) {
+            //if we pass form directly which react couldn't promise the update will be updated immediately
+            //it might dispatch the data before 'setForm' is performed
+            const newRecord = {...form, category: selectedCategory};
+            
             dispatch(addCashIn(newRecord));
-            dispatch(updateBalance(+newRecord.amount));
+            dispatch(updateBalance(newRecord.amount));
+            //clear input field
+            setForm(initialForm);
             setShowSuccess(true);
         }
-
         else setShowAlert(true);
     }
 
@@ -147,7 +146,7 @@ export const CashIn = () => {
                         id="price"
                         className="block w-full pl-7 pr-12 rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                         placeholder="0.00"
-                        ref={amountRef}
+                        onChange={e => setForm({...form, amount: +e.target.value})}
                     />
                     <div className="absolute inset-y-0 right-0 flex items-center">
                         <label htmlFor="currency" className="sr-only">
@@ -214,7 +213,7 @@ export const CashIn = () => {
                                                     id="contact-form-email"
                                                     className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                     placeholder="Reference"
-                                                    ref={referenceRef}
+                                                    onChange={e => setForm({...form, reference: e.target.value})}
                                                 />
                                             </div>
                                         </div>
@@ -224,7 +223,7 @@ export const CashIn = () => {
                                                     className="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                     id="comment"
                                                     placeholder="Detail" name="detail" rows="5" cols="40"
-                                                    ref={detailRef}
+                                                    onChange={e => setForm({...form, detail: e.target.value})}
                                                 >
                                                 </textarea>
                                             </label>
