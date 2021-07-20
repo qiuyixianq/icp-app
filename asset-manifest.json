@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/icp-app/static/css/main.1ba70851.chunk.css",
-    "main.js": "/icp-app/static/js/main.02bdf311.chunk.js",
-    "main.js.map": "/icp-app/static/js/main.02bdf311.chunk.js.map",
+    "main.js": "/icp-app/static/js/main.d11066af.chunk.js",
+    "main.js.map": "/icp-app/static/js/main.d11066af.chunk.js.map",
     "runtime-main.js": "/icp-app/static/js/runtime-main.432073de.js",
     "runtime-main.js.map": "/icp-app/static/js/runtime-main.432073de.js.map",
     "static/js/2.2a08ab79.chunk.js": "/icp-app/static/js/2.2a08ab79.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.432073de.js",
     "static/js/2.2a08ab79.chunk.js",
     "static/css/main.1ba70851.chunk.css",
-    "static/js/main.02bdf311.chunk.js"
+    "static/js/main.d11066af.chunk.js"
   ]
 }
