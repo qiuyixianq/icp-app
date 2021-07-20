@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/icp-app/static/css/main.1ba70851.chunk.css",
+    "main.js": "/icp-app/static/js/main.b9ec7860.chunk.js",
+    "main.js.map": "/icp-app/static/js/main.b9ec7860.chunk.js.map",
+    "runtime-main.js": "/icp-app/static/js/runtime-main.432073de.js",
+    "runtime-main.js.map": "/icp-app/static/js/runtime-main.432073de.js.map",
+    "static/js/2.2a08ab79.chunk.js": "/icp-app/static/js/2.2a08ab79.chunk.js",
+    "static/js/2.2a08ab79.chunk.js.map": "/icp-app/static/js/2.2a08ab79.chunk.js.map",
+    "index.html": "/icp-app/index.html",
+    "static/css/main.1ba70851.chunk.css.map": "/icp-app/static/css/main.1ba70851.chunk.css.map",
+    "static/js/2.2a08ab79.chunk.js.LICENSE.txt": "/icp-app/static/js/2.2a08ab79.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.432073de.js",
+    "static/js/2.2a08ab79.chunk.js",
+    "static/css/main.1ba70851.chunk.css",
+    "static/js/main.b9ec7860.chunk.js"
+  ]
+}
