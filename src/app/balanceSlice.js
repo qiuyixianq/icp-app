@@ -8,9 +8,12 @@ const balanceSlice = createSlice({
     reducers: {
         updateBalance: (state,action) => {
             return state += action.payload;
+        },
+        setBalance: (state,action) => {
+            return action.payload;
         }
     }
 });
 
-export const { updateBalance } = balanceSlice.actions;
+export const { updateBalance, setBalance } = balanceSlice.actions;
 export default balanceSlice.reducer;
