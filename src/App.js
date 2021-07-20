@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { CashIn } from './components/CashIn/CashIn';
 import { CashOut } from './components/CashOut/CashOut';
 import { Report } from './components/Report/Report';
+import appreciate from './img/appreciate.svg';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route path='/' exact>
           <div className="mt-10">
             <h3 className="text-xl text-center">Welcome, Khoo</h3>
-            <img className="mx-auto" src="/img/home/appreciate.svg" alt="welcome" />
+            <img className="mx-auto" src={appreciate} alt="welcome" />
           </div>
         </Route>
 
