@@ -33,7 +33,7 @@ export const PieChartIn = props => {
                     options={{
                         title: {
                             display: true,
-                            text: 'Average Rainfall per month',
+                            text: 'Gross Profit',
                             fontSize: 20
                         },
                         legend: {

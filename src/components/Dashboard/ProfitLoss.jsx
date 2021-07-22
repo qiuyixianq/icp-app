@@ -35,7 +35,7 @@ export const ProfitLoss = props => {
                     options={{
                         title: {
                             display: true,
-                            text: 'Average Rainfall per month',
+                            text: 'Profit.vs.Loss',
                             fontSize: 20
                         },
                         legend: {

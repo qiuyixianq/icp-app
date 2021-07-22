@@ -57,7 +57,7 @@ export const RecentProfitLoss = () => {
                 options={{
                     title: {
                         display: true,
-                        text: 'Average Rainfall per month',
+                        text: 'Recent Profit.vs.Loss',
                         fontSize: 20
                     },
                     legend: {
