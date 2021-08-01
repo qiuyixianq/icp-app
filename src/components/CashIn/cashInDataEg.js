@@ -203,4 +203,11 @@ export const cashInData = [
         amount: 499,
         date: new Date(2021, 6, 4, 10, 39, 0, 0).toDateString()
     },
+    {
+        category: 'Comission',
+        reference: 'from Jeremy',
+        detail: 'Run ads',
+        amount: 299,
+        date: new Date(2021, 7, 4, 10, 39, 0, 0).toDateString()
+    },
 ];

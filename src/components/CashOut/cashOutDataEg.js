@@ -66,4 +66,11 @@ export const cashOutData = [
         amount: 150,
         date: new Date(2021, 6, 4, 11, 28, 0, 0).toDateString()
     },
+    {
+        category: 'Stock',
+        reference: 'to Jinny Trading',
+        detail: '5 wired mouse',
+        amount: 200,
+        date: new Date(2021, 7, 4, 11, 28, 0, 0).toDateString()
+    },
 ];
