@@ -73,4 +73,11 @@ export const cashOutData = [
         amount: 200,
         date: new Date(2021, 7, 4, 11, 28, 0, 0).toDateString()
     },
+    {
+        category: 'Rent',
+        reference: 'to Raymond',
+        detail: 'montly warehosue rent',
+        amount: 1200,
+        date: new Date(2021, 7, 1, 10, 28, 0, 0).toDateString()
+    },
 ];
