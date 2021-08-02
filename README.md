@@ -24,3 +24,10 @@ The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
 
 See the section about deployment for more information.
+
+### `Example Screenshot`
+![Dashboard](https://user-images.githubusercontent.com/50065264/127809008-a90dc96d-8bd0-413a-a78b-0eabb8ae0967.PNG)
+
+![CashIn](https://user-images.githubusercontent.com/50065264/127809018-fd153628-a8e3-4817-aa54-4aa2012b0992.PNG)
+
+![ReportIn](https://user-images.githubusercontent.com/50065264/127809027-2284fd90-e9d1-4b9d-84e9-03a2ffc95f25.PNG)
