@@ -22,13 +22,18 @@ export const PieChartIn = props => {
         }]
     }
 
+    const renderTotal = () => {
+        if(cleanData.data.length > 0) return <h3 className="font-bold mt-2 text-2xl">Total: <span>{cleanData.data.reduce((p, c) => p + c)}</span> MYR</h3>
+    }
+
     //main render
     return (
         <div className="mt-5">
             <h3 className="font-bold text-xl">Gross Profit</h3>
 
             <div className="h-72 w-72 shadow-sm rounded-xl hover:shadow-lg transition-shadow ">
-                <Doughnut
+                {cleanData.rangedCategory.length > 0 ? (
+                    <Doughnut
                     data={pieState}
                     options={{
                         title: {
@@ -43,9 +48,10 @@ export const PieChartIn = props => {
                         hoverOffset: 6
                     }}
                 />
+                ): (<h3 className="font-bold mt-2 text-md">No Record</h3>)}
             </div>
 
-            <h3 className="font-bold mt-2 text-2xl">Total: <span>{cleanData.data.reduce((p, c) => p + c)}</span> MYR</h3>
+            {renderTotal()}
         </div>
     );
 

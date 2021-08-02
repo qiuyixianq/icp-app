@@ -22,11 +22,11 @@ export const RecentProfitLoss = () => {
             //get filtered array by month
             const sumInArr = cashInData.filter(data => new Date(data.date).getMonth() === i);
             //sum up all OBJECT.amount in array
-            const totalSumIn = sumInArr.reduce((sum,curData) => ({amount: sum.amount + curData.amount}));
+            const totalSumIn = sumInArr.length > 0 ? (sumInArr.reduce((sum,curData) => ({amount: sum.amount + curData.amount}))) : {amount: 0};
 
             //cashOut
             const sumOutArr = cashOutData.filter(data => new Date(data.date).getMonth() === i);
-            const totalSumOut = sumOutArr.reduce((sum,curData) => ({amount: sum.amount + curData.amount}));
+            const totalSumOut = sumOutArr.length > 0 ? (sumOutArr.reduce((sum,curData) => ({amount: sum.amount + curData.amount}))) : {amount: 0};
 
             diffArr.push(totalSumIn.amount - totalSumOut.amount);
         }

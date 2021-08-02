@@ -14,6 +14,6 @@ export const filterData = (rangedData,category) => {
                 data.push(amountSum.amount);
             }
         }
-        return { data, rangedCategory };
     }
+    return { data, rangedCategory };
 }

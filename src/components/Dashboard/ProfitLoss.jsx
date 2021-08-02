@@ -10,8 +10,8 @@ export const ProfitLoss = props => {
     const { cashInData, cashOutData } = props;
 
     const calProLossArr = () => {
-        const totalSumIn = cashInData.reduce((sum,curData) => ({amount: sum.amount + curData.amount}));
-        const totalSumOut = cashOutData.reduce((sum,curData) => ({amount: sum.amount + curData.amount}));
+        const totalSumIn = cashInData.length > 0 ? (cashInData.reduce((sum,curData) => ({amount: sum.amount + curData.amount}))) : {amount: 0};
+        const totalSumOut = cashOutData.length > 0 ? (cashOutData.reduce((sum,curData) => ({amount: sum.amount + curData.amount}))) : {amount: 0};
         return [totalSumIn.amount,totalSumOut.amount];
     }
 
@@ -30,7 +30,8 @@ export const ProfitLoss = props => {
             <h3 className="font-bold text-xl">Profit vs Loss</h3>
 
             <div className="h-64 w-64 shadow-sm rounded-xl hover:shadow-lg transition-shadow ">
-                <Pie
+                {cashInData.length > 0 || cashOutData.length > 0 ? (
+                    <Pie
                     data={prolossData}
                     options={{
                         title: {
@@ -45,6 +46,7 @@ export const ProfitLoss = props => {
                         hoverOffset: 6
                     }}
                 />
+                ): (<h3 className="font-bold mt-2 text-md">No Record</h3>)}
             </div>
 
             <h3 className="font-bold mt-2 text-2xl">Profit: <span>{calProLossArr().reduce((p,c) => p - c)}</span> MYR</h3>
