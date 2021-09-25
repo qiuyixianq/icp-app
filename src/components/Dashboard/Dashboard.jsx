@@ -24,14 +24,14 @@ export const Dashboard = () => {
         }
         //Last Month
         case rangeList[1]: {
-            rangedCashInData = cashInData.filter(el => new Date(el.date).getMonth() === new Date().getMonth() - 1);
-            rangedCashOutData = cashOutData.filter(el => new Date(el.date).getMonth() === new Date().getMonth() - 1);
+            rangedCashInData = cashInData.filter(data => new Date(data.date).getMonth() === new Date().getMonth() - 1);
+            rangedCashOutData = cashOutData.filter(data => new Date(data.date).getMonth() === new Date().getMonth() - 1);
             break;
         }
         //Last Three Month
         case rangeList[2]: {
-            rangedCashInData = cashInData.filter(el => new Date(el.date).getMonth() >= new Date().getMonth() - 3);
-            rangedCashOutData = cashOutData.filter(el => new Date(el.date).getMonth() >= new Date().getMonth() - 3);
+            rangedCashInData = cashInData.filter(data => new Date(data.date).getMonth() >= new Date().getMonth() - 3);
+            rangedCashOutData = cashOutData.filter(data => new Date(data.date).getMonth() >= new Date().getMonth() - 3);
             break;
         }
         default: 

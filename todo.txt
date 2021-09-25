@@ -1,3 +1,0 @@
-note.
-//remove spaces between string
-${item.toLowerCase().replace(/ /g, '')}

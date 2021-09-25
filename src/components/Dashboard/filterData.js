@@ -4,7 +4,7 @@ export const filterData = (rangedData,category) => {
     let rangedCategory = [];
 
     if (rangedData.length > 0) {
-        //summing each cashIn category's amount
+        //summing each cashIn/Out category's amount
         for (let i = 0; i < category.length; i++) {
             let groupData = rangedData.filter(el => el.category === category[i]);
 
